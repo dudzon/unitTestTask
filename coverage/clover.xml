@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1700123331878" clover="3.2.0">
-  <project timestamp="1700123331878" name="All files">
-    <metrics statements="101" coveredstatements="88" conditionals="59" coveredconditionals="45" methods="40" coveredmethods="36" elements="200" coveredelements="169" complexity="0" loc="101" ncloc="101" packages="1" files="1" classes="1"/>
+<coverage generated="1700483774853" clover="3.2.0">
+  <project timestamp="1700483774853" name="All files">
+    <metrics statements="101" coveredstatements="88" conditionals="59" coveredconditionals="44" methods="40" coveredmethods="36" elements="200" coveredelements="168" complexity="0" loc="101" ncloc="101" packages="1" files="1" classes="1"/>
     <file name="unitTestingTask.js" path="/Users/tdudzinski/WebstormProjects/date-master/unitTestingTask.js">
-      <metrics statements="101" coveredstatements="88" conditionals="59" coveredconditionals="45" methods="40" coveredmethods="36"/>
+      <metrics statements="101" coveredstatements="88" conditionals="59" coveredconditionals="44" methods="40" coveredmethods="36"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="cond" truecount="2" falsecount="2"/>
       <line num="3" count="0" type="stmt"/>
@@ -33,7 +33,7 @@
       <line num="74" count="3" type="stmt"/>
       <line num="77" count="1" type="stmt"/>
       <line num="80" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="83" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="83" count="1" type="cond" truecount="1" falsecount="1"/>
       <line num="86" count="4" type="stmt"/>
       <line num="89" count="1" type="stmt"/>
       <line num="92" count="4" type="stmt"/>
