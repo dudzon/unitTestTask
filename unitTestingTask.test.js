@@ -54,7 +54,7 @@ describe('lang function', () => {
 
 
 describe('tokens object', () => {
-  const date = new Date(2022, 0, 1); 
+  const date = new Date(2022, 0, 1, 14, 22, 17); 
 
   beforeEach(() => {
     unitTestingTask.lang('en', {
@@ -124,35 +124,35 @@ describe('tokens object', () => {
   });
 
   it('returns the correct hour in HH format', () => {
-    expect(unitTestingTask('HH', date)).toBe('00');
+    expect(unitTestingTask('HH', date)).toBe('14');
   });
 
   it('returns the correct hour in H format', () => {
-    expect(unitTestingTask('H', date)).toBe('0');
+    expect(unitTestingTask('H', date)).toBe('14');
   });
 
   it('returns the correct hour in hh format', () => {
-    expect(unitTestingTask('hh', date)).toBe('12');
+    expect(unitTestingTask('hh', date)).toBe('02');
   });
 
   it('returns the correct hour in h format', () => {
-    expect(unitTestingTask('h', date)).toBe('12');
+    expect(unitTestingTask('h', date)).toBe('2');
   });
 
   it('returns the correct minute in mm format', () => {
-    expect(unitTestingTask('mm', date)).toBe('00');
+    expect(unitTestingTask('mm', date)).toBe('22');
   });
 
   it('returns the correct minute in m format', () => {
-    expect(unitTestingTask('m', date)).toBe('0');
+    expect(unitTestingTask('m', date)).toBe('22');
   });
 
   it('returns the correct second in ss format', () => {
-    expect(unitTestingTask('ss', date)).toBe('00');
+    expect(unitTestingTask('ss', date)).toBe('17');
   });
 
   it('returns the correct second in s format', () => {
-    expect(unitTestingTask('s', date)).toBe('0');
+    expect(unitTestingTask('s', date)).toBe('17');
   });
 
   it('returns the correct millisecond in ff format', () => {

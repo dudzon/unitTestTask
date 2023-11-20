@@ -320,5 +320,6 @@
         return this;
     };
 
-    return unitTestingTask;
+    return unitTestingTask
 }));
+
