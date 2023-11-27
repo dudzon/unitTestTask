@@ -16,13 +16,17 @@ describe('unitTestingTask function', () => {
   });
 });
 
-describe('formatting date 2022-01-01T12:34:56.789Z', () => {
+describe('formatting date with different formats', () => {
   it.each([
     ['YYYY-MM-dd HH:mm:ss', '2022-01-01 12:34:56'],
     ['YYYY-MM-dd HH:mm:ss.ff', '2022-01-01 12:34:56.789'],
-    ['YYYY-MM-dd hh:mm:ss A', '2022-01-01 12:34:56 PM']
+    ['YYYY-MM-dd hh:mm:ss A', '2022-01-01 12:34:56 PM'],
+    ['YY-MMM-DDD h:m:s.f a', '22-Jan-Saturday 12:34:56.789 pm'],
+    ['M-D H', '1-Sa 12'],
+    ['YY-MM-d hh:m:s a', '22-01-1 12:34:56 pm'],
+    ['YY-MMMM-DD hh:mm:s a', '22-January-Sat 12:34:56 pm']
   ])('format "%s" returns "%s"', (format, expected) => {
-    const date = new Date('2022-01-01T12:34:56.789Z');
+    const date = new Date(2022, 0, 1, 12, 34, 56, 789);
     expect(unitTestingTask(format, date)).toBe(expected);
   });
 });
