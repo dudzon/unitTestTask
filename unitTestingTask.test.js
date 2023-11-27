@@ -1,4 +1,6 @@
-const  unitTestingTask  = require('./unitTestingTask');
+const unitTestingTask  = require('./unitTestingTask');
+const timezonedDate = require('timezoned-date');
+global.Date = timezonedDate.makeConstructor(0);
 
 describe('unitTestingTask function', () => {
   it('throws an error if format argument is not a string', () => {
@@ -12,12 +14,16 @@ describe('unitTestingTask function', () => {
   it('returns a string', () => {
     expect(typeof unitTestingTask('YYYY-MM-DD')).toBe('string');
   });
+});
 
-  it('tests unitTestingTask function', () => {
-    const date = new Date(2022, 0, 1, 12, 34, 56, 789);
-    expect(unitTestingTask('YYYY-MM-dd HH:mm:ss', date)).toBe('2022-01-01 12:34:56');
-    expect(unitTestingTask('YYYY-MM-dd HH:mm:ss.ff', date)).toBe('2022-01-01 12:34:56.789');
-    expect(unitTestingTask('YYYY-MM-dd hh:mm:ss A', date)).toBe('2022-01-01 12:34:56 PM');
+describe('formatting date 2022-01-01T12:34:56.789Z', () => {
+  it.each([
+    ['YYYY-MM-dd HH:mm:ss', '2022-01-01 12:34:56'],
+    ['YYYY-MM-dd HH:mm:ss.ff', '2022-01-01 12:34:56.789'],
+    ['YYYY-MM-dd hh:mm:ss A', '2022-01-01 12:34:56 PM']
+  ])('format "%s" returns "%s"', (format, expected) => {
+    const date = new Date('2022-01-01T12:34:56.789Z');
+    expect(unitTestingTask(format, date)).toBe(expected);
   });
 });
 
@@ -163,41 +169,30 @@ describe('tokens object', () => {
     expect(unitTestingTask('f', date)).toBe('5');
   });
 
-  it('returns the correct meridiem in A format', () => {
-    expect(unitTestingTask('A', new Date(2022, 0, 1, 1))).toBe('AM');
-    expect(unitTestingTask('A', new Date(2022, 0, 1, 23))).toBe('PM');
+  describe('returns the correct meridiem in A format', () => {
+    it.each([
+      [['A', new Date(2022, 0, 1, 1)], 'AM'],
+      [['A', new Date(2022, 0, 1, 23)], 'PM']
+    ])('format "%A" returns "%A"', ([format, date], expected) => {
+      expect(unitTestingTask(format, date)).toBe(expected);
+    });
   });
 
-  it('returns the correct meridiem in a format', () => {
-    expect(unitTestingTask('a', new Date(2022, 0, 1, 1))).toBe('am');
-    expect(unitTestingTask('a', new Date(2022, 0, 1, 23))).toBe('pm');
+  describe('returns the correct meridiem in a format', () => {
+    it.each([
+      [['a', new Date(2022, 0, 1, 1)], 'am'],
+      [['a', new Date(2022, 0, 1, 23)], 'pm']
+    ])('format "%a" returns "%a"', ([format, date], expected) => {
+      expect(unitTestingTask(format, date)).toBe(expected);
+    });
   });
 
   it('returns the correct timezone offset in ZZ format', () => {
-    expect(unitTestingTask('ZZ', date)).toBe('+0100');
+    expect(unitTestingTask('ZZ', date)).toBe('+0000');
   });
 
   it('returns the correct timezone offset in Z format', () => {
-    expect(unitTestingTask('Z', date)).toBe('+01:00');
-  });
-});
-
-describe('noConflict function', () => {
-  it('restores the previous value of unitTestingTask on the root object and returns the current unitTestingTask object', () => {
-
-    const prevDate = 'previous value';
-    const root = { unitTestingTask: prevDate };
-    const unitTestingTask = { noConflict: null }; 
-
-    unitTestingTask.noConflict = function () {
-      root.unitTestingTask = prevDate;
-      return this;
-    };
-
-    const result = unitTestingTask.noConflict();
-
-    expect(root.unitTestingTask).toBe('previous value');
-    expect(result).toBe(unitTestingTask);
+    expect(unitTestingTask('Z', date)).toBe('+00:00');
   });
 });
 
